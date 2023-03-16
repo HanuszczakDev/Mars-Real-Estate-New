@@ -4,8 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.hanuszczak.marsrealestatenew.R
-import com.hanuszczak.marsrealestatenew.databinding.FragmentOverviewBinding
+import com.hanuszczak.marsrealestatenew.databinding.GridViewItemBinding
 
 class OverviewFragment : Fragment() {
     private val viewModel: OverviewViewModel by lazy {
@@ -16,7 +15,7 @@ class OverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = FragmentOverviewBinding.inflate(inflater)
+        val binding = GridViewItemBinding.inflate(inflater)
 
         binding.viewModel = viewModel
 

@@ -12,9 +12,13 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class OverviewViewModel : ViewModel() {
-    private val _response = MutableLiveData<String>()
-    val response: LiveData<String>
-        get() = _response
+    private val _status = MutableLiveData<String>()
+    val status: LiveData<String>
+        get() = _status
+
+    private val _property = MutableLiveData<MarsProperty>()
+    val property: LiveData<MarsProperty>
+        get() = _property
 
     init {
         getMarsRealEstateProperties()
@@ -24,9 +28,12 @@ class OverviewViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 var listResult = MarsApi.retrofitService.getProperties()
-                _response.value = "Success: ${listResult.size} Mars properties retrieved"
+                _status.value = "Success: ${listResult.size} Mars properties retrieved"
+                if (listResult.size > 0) {
+                    _property.value = listResult[0]
+                }
             } catch (e: java.lang.Exception) {
-                _response.value = "Failure: ${e.message}"
+                _status.value = "Failure: ${e.message}"
             }
         }
     }
