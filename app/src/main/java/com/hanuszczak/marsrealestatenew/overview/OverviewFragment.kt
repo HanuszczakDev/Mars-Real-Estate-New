@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.hanuszczak.marsrealestatenew.databinding.GridViewItemBinding
+import com.hanuszczak.marsrealestatenew.databinding.FragmentOverviewBinding
 
 class OverviewFragment : Fragment() {
     private val viewModel: OverviewViewModel by lazy {
@@ -15,20 +15,14 @@ class OverviewFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val binding = GridViewItemBinding.inflate(inflater)
-
-        binding.viewModel = viewModel
+        val binding = FragmentOverviewBinding.inflate(inflater)
 
         binding.lifecycleOwner = viewLifecycleOwner
 
-//        setHasOptionsMenu(true)
+        binding.viewModel = viewModel
 
-        val view = binding.root
+        binding.photosGrid.adapter = PhotoGridAdapter()
 
-        return view
+        return binding.root
     }
-
-//    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-//        super.onCreateOptionsMenu(menu, inflater)
-//    }
 }
